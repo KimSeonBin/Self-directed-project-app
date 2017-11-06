@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="a"
+        android:id="@+id/setting_mail_text"
+        android:layout_toLeftOf="@id/setting_mail_switch"
+        android:maxLines="2"
+        android:padding="16dp"/>
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/setting_mail_switch"
+        android:checked="true"
+        android:layout_alignParentEnd="true"
+        android:padding="16dp"
+        android:track="@drawable/myswitch_selector"
+        android:thumb="@drawable/myswitch_thumb_selector"/>
+</RelativeLayout>

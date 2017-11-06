@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/search"
+        icon="@drawable/ic_search"
+        title="검색"
+        activeColor="#AB47BC"/>
+    <tab
+        id="@+id/content"
+        icon="@drawable/ic_saved_list"
+        title="저장 내용"
+        activeColor="#AB47BC"/>
+    <tab
+        id="@+id/alarm"
+        icon="@drawable/ic_alarm"
+        title="알람"
+        activeColor="#AB47BC"/>
+    <tab
+        id="@+id/setting"
+        icon="@drawable/ic_setting"
+        title="설정"
+        activeColor="#AB47BC"/>
+</tabs>

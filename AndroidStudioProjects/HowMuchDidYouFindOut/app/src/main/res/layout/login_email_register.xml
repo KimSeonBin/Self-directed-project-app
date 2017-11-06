@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/e-mail_address"
+        android:hint="e-mail"
+        android:layout_margin="16dp"
+        android:background="#FFFFFF"
+        />
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Login_password"
+        android:hint="password"
+        android:inputType="textPassword"
+        android:layout_margin="16dp"
+        android:background="#FFFFFF"/>
+
+    <com.gc.materialdesign.views.ButtonRectangle
+        android:id="@+id/Login_register_button"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="등록"
+        android:textColor="#ffffff"
+        android:background="#527394"
+        android:layout_gravity="end"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        />
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="*"
+        android:gravity="center"
+        >
+        <TableRow>
+            <com.nhn.android.naverlogin.ui.view.OAuthLoginButton
+                android:id="@+id/Login_naver"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                />
+            <com.gc.materialdesign.views.ButtonRectangle
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:visibility="invisible"/>
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>

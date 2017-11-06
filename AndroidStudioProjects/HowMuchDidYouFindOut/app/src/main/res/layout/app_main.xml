@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#76ff03"
+        android:id="@+id/app_main_toolbar"
+        android:layout_alignParentTop="true"
+        android:elevation="4dp">
+    </android.support.v7.widget.Toolbar>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/main_bottomBar"
+        android:layout_below="@+id/app_main_toolbar"
+        android:id="@+id/fragment_layout">
+    </FrameLayout>
+    <com.roughike.bottombar.BottomBar
+        android:id="@+id/main_bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        app:bb_inActiveTabColor="#ffffff"
+        app:bb_tabXmlResource="@xml/bottom_tab"
+        android:background="#76ff03"
+        >
+    </com.roughike.bottombar.BottomBar>
+</RelativeLayout>
