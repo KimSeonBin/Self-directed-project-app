@@ -47,14 +47,14 @@ public class LoginActivity extends AppCompatActivity {
 
                 NaverAsync naverAsync = new NaverAsync(mOAuthLoginModule, mContext);
                 try {
-                    String e_mail = naverAsync.execute(accessToken).get();
-
-                    SaveSharedPreference.setUserName(LoginActivity.this, e_mail);
+                    String temp = naverAsync.execute(accessToken).get();
+                    String e_mail[] = temp.split("");
+                    SaveSharedPreference.setUserName(LoginActivity.this, e_mail[0]);
                     intent = new Intent(LoginActivity.this, AppMainActivity.class);
                     startActivity(intent);
 
                     Toast.makeText(mContext, "access Token:" + accessToken
-                            + ", e-mail:" + e_mail, Toast.LENGTH_SHORT).show();
+                            + ", e-mail:" + e_mail[0], Toast.LENGTH_SHORT).show();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {

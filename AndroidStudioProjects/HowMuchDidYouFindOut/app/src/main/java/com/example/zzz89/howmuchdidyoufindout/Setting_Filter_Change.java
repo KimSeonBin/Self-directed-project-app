@@ -24,7 +24,6 @@ public class Setting_Filter_Change extends AppCompatActivity {
 
     }
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
