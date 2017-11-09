@@ -24,6 +24,8 @@
             android:label="OAuth2.0 In-app"/>
         <activity android:name=".Setting_Filter_Change"/>
         <activity android:name=".Setting_Mail"/>
+        <activity android:name=".SearchResultActivity"/>
+        <activity android:name=".SearchResultPriceTooHigh"/>
     </application>
 
 </manifest>

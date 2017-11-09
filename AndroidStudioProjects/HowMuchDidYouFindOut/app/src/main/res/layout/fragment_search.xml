@@ -10,14 +10,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/main_search_keyword"
-        android:hint="키워드를 입력하세요"
-        android:layout_margin="8dp"/>
+        android:hint="@string/main_search_item"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="16dp"/>
     <com.rengwuxian.materialedittext.MaterialEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
         android:id="@+id/main_search_price"
-        android:hint=".원"
-        android:layout_margin="8dp"/>
-
+        android:hint="@string/main_search_price"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"/>
+    <com.gc.materialdesign.views.ButtonRectangle
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:id="@+id/main_search_button"
+        android:layout_gravity="end"
+        android:background="#3F51B5"
+        android:text="@string/main_search_button"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        />
 </LinearLayout>

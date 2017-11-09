@@ -42,4 +42,5 @@ public class NaverAsync extends AsyncTask<String, Void, String> {
         }
         return "";
     }
+
 }

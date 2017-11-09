@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#76ff03"
+        android:id="@+id/search_result_too_much_toolbar"
+        android:layout_alignParentTop="true"
+        android:elevation="4dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/search_result_too_much_text"
+            android:gravity="center"
+            android:lines="4"
+            android:text="aaa"
+            />
+        <com.gc.materialdesign.views.ButtonRectangle
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:id="@+id/search_result_too_much_button"
+            android:padding="8dp"
+            android:layout_gravity="center"
+            android:text="@string/search_item_push"
+            >
+        </com.gc.materialdesign.views.ButtonRectangle>
+    </LinearLayout>
+
+</RelativeLayout>
