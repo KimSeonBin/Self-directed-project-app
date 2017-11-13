@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.zzz89.howmuchdidyoufindout.db.SaveSharedPreference;
+import com.example.zzz89.howmuchdidyoufindout.login.LoginActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override

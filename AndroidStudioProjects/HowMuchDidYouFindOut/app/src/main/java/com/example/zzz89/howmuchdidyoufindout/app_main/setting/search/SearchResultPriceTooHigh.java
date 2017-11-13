@@ -1,4 +1,4 @@
-package com.example.zzz89.howmuchdidyoufindout;
+package com.example.zzz89.howmuchdidyoufindout.app_main.setting.search;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,11 +8,12 @@ import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.zzz89.howmuchdidyoufindout.R;
+import com.example.zzz89.howmuchdidyoufindout.db.HowMuchSQLHelper;
 import com.gc.materialdesign.views.ButtonRectangle;
 
 /**
@@ -22,6 +23,7 @@ import com.gc.materialdesign.views.ButtonRectangle;
 public class SearchResultPriceTooHigh extends AppCompatActivity {
     private String item_name;
     private int item_price;
+    private String img_url;
     private TextView textView;
     private ButtonRectangle buttonRectangle;
     private Toolbar toolbar;
@@ -37,6 +39,8 @@ public class SearchResultPriceTooHigh extends AppCompatActivity {
         Intent intent = getIntent();
         item_name = intent.getStringExtra("item_name");
         item_price = intent.getIntExtra("item_price", 0);
+        img_url = intent.getStringExtra("img_url");
+
         textView = (TextView)findViewById(R.id.search_result_too_much_text);
         buttonRectangle = (ButtonRectangle)findViewById(R.id.search_result_too_much_button);
         toolbar = (Toolbar)findViewById(R.id.search_result_too_much_toolbar);
@@ -65,7 +69,8 @@ public class SearchResultPriceTooHigh extends AppCompatActivity {
         buttonRectangle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                storeinSQL();
+                finish();
             }
         });
     }
@@ -81,5 +86,10 @@ public class SearchResultPriceTooHigh extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         finish();
         return super.onOptionsItemSelected(item);
+    }
+
+    private void storeinSQL(){
+        HowMuchSQLHelper sqLiteDatabase = new HowMuchSQLHelper(getApplicationContext(), HowMuchSQLHelper.DB_name, null, HowMuchSQLHelper.versionNumber);
+        sqLiteDatabase.addITEM_INFO(item_name, item_price, img_url);
     }
 }

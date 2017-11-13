@@ -1,4 +1,4 @@
-package com.example.zzz89.howmuchdidyoufindout;
+package com.example.zzz89.howmuchdidyoufindout.app_main.setting.search;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.Toast;
+
+import com.example.zzz89.howmuchdidyoufindout.R;
+import com.gc.materialdesign.widgets.Dialog;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -93,10 +95,17 @@ public class SearchResultActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
-                    parsing_Danawa(response.body().string());
-                    search_count++;
-                    adapter.notifyDataSetChanged();
-                    loading = true;
+                    Log.d("aadasdasda", response.message());
+                    if(response.isSuccessful()) {
+                        parsing_Danawa(response.body().string());
+                        search_count++;
+                        adapter.notifyDataSetChanged();
+                        loading = true;
+                    }
+                    else{
+                        Dialog dialog = new Dialog(getApplicationContext(), "주의", "존재하지 않는 아이템입니다.");
+                        dialog.show();
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                     // 없다는 표시를 추가.

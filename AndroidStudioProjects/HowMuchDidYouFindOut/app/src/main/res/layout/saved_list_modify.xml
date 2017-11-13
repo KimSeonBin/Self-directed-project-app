@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#76ff03"
+        android:id="@+id/savedlist_toolbar"
+        android:elevation="4dp">
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingTop="16dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/savedlist_change_item_title"
+            android:text="@string/update"
+            android:gravity="center"/>
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/savedlist_change_item_price"
+            android:hint="@string/main_search_price"
+            android:maxLines="1"
+            android:textSelectHandleRight="@string/main_search_price"
+            android:gravity="end"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="8dp"
+        >
+        <com.gc.materialdesign.views.ButtonRectangle
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:id="@+id/savedlist_change"
+            android:background="#3F51B5"
+            android:text="@string/update"
+            android:paddingEnd="4dp"
+            android:paddingStart="4dp">
+        </com.gc.materialdesign.views.ButtonRectangle>
+        <com.gc.materialdesign.views.ButtonRectangle
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:background="#3F51B5"
+            android:id="@+id/savedlist_delete"
+            android:text="@string/delete"
+            android:paddingEnd="4dp"
+            android:paddingStart="4dp">
+        </com.gc.materialdesign.views.ButtonRectangle>
+    </LinearLayout>
+</LinearLayout>

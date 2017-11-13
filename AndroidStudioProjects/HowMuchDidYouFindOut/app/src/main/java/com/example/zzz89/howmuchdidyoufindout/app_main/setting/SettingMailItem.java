@@ -1,4 +1,4 @@
-package com.example.zzz89.howmuchdidyoufindout;
+package com.example.zzz89.howmuchdidyoufindout.app_main.setting;
 
 /**
  * Created by zzz89 on 2017-11-03.

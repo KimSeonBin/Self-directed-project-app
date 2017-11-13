@@ -1,12 +1,20 @@
 package com.example.zzz89.howmuchdidyoufindout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+
+import com.example.zzz89.howmuchdidyoufindout.app_main.setting.SettingFragment;
+import com.example.zzz89.howmuchdidyoufindout.app_main.setting.alarm.AlarmFragment;
+import com.example.zzz89.howmuchdidyoufindout.app_main.setting.saved.SavedlistFragment;
+import com.example.zzz89.howmuchdidyoufindout.app_main.setting.search.SearchFragment;
+import com.example.zzz89.howmuchdidyoufindout.login.LoginActivity;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
@@ -21,7 +29,7 @@ public class AppMainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.app_main);
-        LoginActivity loginActivity = (LoginActivity)LoginActivity.activity;
+        LoginActivity loginActivity = (LoginActivity) LoginActivity.activity;
 
         if(loginActivity != null) {
             loginActivity.finish();
@@ -60,7 +68,7 @@ public class AppMainActivity extends AppCompatActivity {
                 else{
                 }
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_layout, fragment);
+                fragmentTransaction.replace(R.id.fragment_layout, fragment, "cureent");
                 fragmentTransaction.commit();
             }
         });
@@ -72,5 +80,4 @@ public class AppMainActivity extends AppCompatActivity {
         super.onDestroy();
         finishAffinity();
     }
-
 }

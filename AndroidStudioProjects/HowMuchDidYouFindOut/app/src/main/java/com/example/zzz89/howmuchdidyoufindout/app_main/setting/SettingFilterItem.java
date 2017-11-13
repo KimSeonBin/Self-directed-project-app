@@ -1,6 +1,4 @@
-package com.example.zzz89.howmuchdidyoufindout;
-
-import com.gc.materialdesign.views.Switch;
+package com.example.zzz89.howmuchdidyoufindout.app_main.setting;
 
 /**
  * Created by zzz89 on 2017-11-02.

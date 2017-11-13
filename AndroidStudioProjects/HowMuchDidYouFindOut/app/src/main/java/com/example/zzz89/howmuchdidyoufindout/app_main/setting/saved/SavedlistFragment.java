@@ -1,0 +1,100 @@
+package com.example.zzz89.howmuchdidyoufindout.app_main.setting.saved;
+
+import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
+
+import com.example.zzz89.howmuchdidyoufindout.R;
+import com.example.zzz89.howmuchdidyoufindout.app_main.setting.search.SearchResultCardItem;
+import com.example.zzz89.howmuchdidyoufindout.db.HowMuchSQLHelper;
+
+/**
+ * Created by zzz89 on 2017-10-31.
+ */
+
+public class SavedlistFragment extends Fragment {
+    private ListView listView;
+    private SavedlistAdapter adapter;
+
+    public static SavedlistFragment newInstance() {
+        SavedlistFragment fragment = new SavedlistFragment();
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_savedlist, container, false);
+        listView = (ListView)view.findViewById(R.id.savedlist_listview);
+        adapter = new SavedlistAdapter(getActivity(), R.layout.search_item);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), SavedlistModify.class);
+                SearchResultCardItem item = (SearchResultCardItem)adapter.getItem(position);
+                intent.putExtra("item_name", item.getItemName());
+                intent.putExtra("item_price", item.getPriceInfo());
+                intent.putExtra("img_url", item.getImageReso());
+                intent.putExtra("item_index", position);
+                startActivityForResult(intent, 3);
+            }
+        });
+        loadData();
+        listView.setAdapter(adapter);
+        return view;
+    }
+
+    private void loadData(){
+        HowMuchSQLHelper sqlHelper = new HowMuchSQLHelper(getActivity().getApplicationContext(), HowMuchSQLHelper.DB_name, null, HowMuchSQLHelper.versionNumber);
+        String select[] = sqlHelper.selectITEM_INFO();
+        for(int i = 0; i < select.length; i++){
+            String split[] = select[i].split(" ");
+            adapter.addItem(new SearchResultCardItem(split[2], split[0], split[1]));
+            //split[2] = img_url, split[0] = item_name, split[1] = item_price
+            Log.d("name", split[0]);
+            Log.d("price", split[1]);
+            Log.d("url", split[2]);
+        }
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //super.onActivityResult(requestCode, resultCode, data);
+        Log.d("request", String.valueOf(requestCode));
+        Log.d("result", String.valueOf(resultCode));
+        if(resultCode == 0){
+            return;
+        }
+
+        String updated_item_price = data.getStringExtra("item_price2");
+        int item_pos = data.getIntExtra("item_index2", 0);
+
+        Log.d("item_price2", updated_item_price);
+        if(resultCode == 1){   //update item info
+            adapter.updateItem(item_pos, updated_item_price);
+            adapter.notifyDataSetChanged();
+            Log.d("aaaa","exec");
+        }
+        else if(resultCode == 2){  //delete item info
+            adapter.deleteItem(item_pos);
+            adapter.notifyDataSetChanged();
+        }
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.detach(this).attach(this).commit();
+    }
+
+}

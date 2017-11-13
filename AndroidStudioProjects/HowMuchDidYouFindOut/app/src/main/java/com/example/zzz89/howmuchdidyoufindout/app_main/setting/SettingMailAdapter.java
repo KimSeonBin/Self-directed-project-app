@@ -1,4 +1,4 @@
-package com.example.zzz89.howmuchdidyoufindout;
+package com.example.zzz89.howmuchdidyoufindout.app_main.setting;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,8 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
+
+import com.example.zzz89.howmuchdidyoufindout.R;
 
 import java.util.ArrayList;
 

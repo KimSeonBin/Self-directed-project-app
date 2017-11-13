@@ -1,12 +1,13 @@
-package com.example.zzz89.howmuchdidyoufindout;
+package com.example.zzz89.howmuchdidyoufindout.app_main.setting;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.example.zzz89.howmuchdidyoufindout.R;
 
 import java.util.ArrayList;
 
@@ -68,6 +69,5 @@ public class SettingListAdapter extends BaseAdapter {
     public void addItem(String primary, String secondary){
         SettingListItem settingListItem = new SettingListItem(primary, secondary);
         arrayList.add(settingListItem);
-
     }
 }

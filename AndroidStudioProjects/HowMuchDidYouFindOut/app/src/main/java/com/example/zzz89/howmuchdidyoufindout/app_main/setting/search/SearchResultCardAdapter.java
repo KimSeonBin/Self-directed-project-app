@@ -1,16 +1,16 @@
-package com.example.zzz89.howmuchdidyoufindout;
+package com.example.zzz89.howmuchdidyoufindout.app_main.setting.search;
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.zzz89.howmuchdidyoufindout.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -52,6 +52,7 @@ public class SearchResultCardAdapter extends RecyclerView.Adapter<SearchResultCa
 
                 intent.putExtra("item_name", item.getItemName());
                 intent.putExtra("item_price", item_price);
+                intent.putExtra("img_url", item.getImageReso());
                 v.getContext().startActivity(intent);
             }
         });

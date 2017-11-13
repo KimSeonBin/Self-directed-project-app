@@ -1,16 +1,20 @@
-package com.example.zzz89.howmuchdidyoufindout;
+package com.example.zzz89.howmuchdidyoufindout.app_main.setting.search;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.annotation.Nullable;
-import android.util.Log;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
+import com.example.zzz89.howmuchdidyoufindout.R;
 import com.gc.materialdesign.views.ButtonRectangle;
+import com.gc.materialdesign.widgets.Dialog;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 public class SearchFragment extends Fragment {
@@ -44,7 +48,19 @@ public class SearchFragment extends Fragment {
             public void onClick(View v) {
                 item_name = editTextitem.getText().toString();
                 price_count = editTextprice.getText().toString();
+                if(item_name.equals("") || price_count.equals("")){
+                    SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
+                    stringBuilder.append("주의");
+                    stringBuilder.setSpan(new ForegroundColorSpan(Color.RED), 0, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
+                    Dialog dialog = new Dialog(getContext(), "주의", "상품 또는 가격이 공란입니다.");
+
+                    stringBuilder.clear();
+
+                    //dialog.getMessageTextView().append("상품 또는 가격이 공란입니다");
+                    dialog.show();
+                    return;
+                }
                 Intent intent = new Intent(getActivity(), SearchResultActivity.class);
                 intent.putExtra("item", item_name);
                 intent.putExtra("price", price_count);

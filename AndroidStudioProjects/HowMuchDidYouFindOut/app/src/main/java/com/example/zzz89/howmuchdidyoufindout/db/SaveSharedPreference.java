@@ -1,4 +1,4 @@
-package com.example.zzz89.howmuchdidyoufindout;
+package com.example.zzz89.howmuchdidyoufindout.db;
 
 import android.content.Context;
 import android.content.SharedPreferences;

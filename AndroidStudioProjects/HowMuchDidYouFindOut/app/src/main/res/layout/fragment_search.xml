@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.zzz89.howmuchdidyoufindout.SearchFragment">
+    tools:context="com.example.zzz89.howmuchdidyoufindout.app_main.setting.search.SearchFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <com.rengwuxian.materialedittext.MaterialEditText

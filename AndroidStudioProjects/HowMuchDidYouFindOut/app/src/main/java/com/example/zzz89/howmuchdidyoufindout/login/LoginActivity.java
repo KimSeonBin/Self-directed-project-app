@@ -1,16 +1,17 @@
-package com.example.zzz89.howmuchdidyoufindout;
+package com.example.zzz89.howmuchdidyoufindout.login;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.Window;
 import android.widget.Toast;
 
+import com.example.zzz89.howmuchdidyoufindout.AppMainActivity;
+import com.example.zzz89.howmuchdidyoufindout.R;
+import com.example.zzz89.howmuchdidyoufindout.db.SaveSharedPreference;
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.nhn.android.naverlogin.OAuthLogin;
 import com.nhn.android.naverlogin.OAuthLoginHandler;
@@ -24,7 +25,7 @@ import java.util.concurrent.ExecutionException;
  */
 
 public class LoginActivity extends AppCompatActivity {
-    protected static Activity activity;
+    public static Activity activity;
     private static Context mContext;
     private ButtonRectangle buttonRectangle;
     private MaterialEditText emailEdittext;

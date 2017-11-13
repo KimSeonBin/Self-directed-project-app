@@ -1,4 +1,4 @@
-package com.example.zzz89.howmuchdidyoufindout;
+package com.example.zzz89.howmuchdidyoufindout.app_main.setting;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,15 +10,18 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.example.zzz89.howmuchdidyoufindout.R;
+import com.example.zzz89.howmuchdidyoufindout.login.LoginActivity;
+
 /**
  * Created by zzz89 on 2017-10-31.
  */
 
 public class SettingFragment extends Fragment {
-    SettingListAdapter adapter;
-    ListView listView;
-    String primary[] = {"쇼핑몰 필터 변경", "메일 변경", "자동 메일 전송"};
-    String secondary[] = {"검색할 쇼핑몰을 지정합니다", "메일을 변경합니다", "매일 메일을 받을지 선택합니다"};
+    private SettingListAdapter adapter;
+    private ListView listView;
+    private String primary[] = {"쇼핑몰 필터 변경", "메일 변경", "자동 메일 전송"};
+    private String secondary[] = {"검색할 쇼핑몰을 지정합니다", "메일을 변경합니다", "매일 메일을 받을지 선택합니다"};
     public static SettingFragment newInstance() {
         SettingFragment fragment = new SettingFragment();
         return fragment;
@@ -36,7 +39,6 @@ public class SettingFragment extends Fragment {
         listView = (ListView)view.findViewById(R.id.setting_listview);
 
         adapter = new SettingListAdapter(getActivity(), R.layout.setting_listview_item, primary, secondary);
-
 
         adapter.addItem("쇼핑몰 필터 변경", "검색할 쇼핑몰을 지정합니다");
         adapter.addItem("메일 변경", "메일을 변경합니다.");

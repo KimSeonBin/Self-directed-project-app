@@ -4,10 +4,12 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="main_search_button">검색</string>
-    <string name="main_search_price">.원</string>
+    <string name="main_search_price">원</string>
     <string name="main_search_item">키워드를 입력하세요</string>
     <string name="register_button">등록</string>
     <string name="email_sentence">email</string>
     <string name="password_sentence">password</string>
     <string name="search_item_push">예</string>
+    <string name="update">수정</string>
+    <string name="delete">삭제</string>
 </resources>

@@ -16,16 +16,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity"/>
+        <activity android:name=".login.LoginActivity"/>
         <activity android:name=".AppMainActivity"/>
         <activity android:name="com.nhn.android.naverlogin.ui.OAuthLoginActivity"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
         <activity android:name="com.nhn.android.naverlogin.ui.OAuthLoginInAppBrowserActivity"
             android:label="OAuth2.0 In-app"/>
-        <activity android:name=".Setting_Filter_Change"/>
-        <activity android:name=".Setting_Mail"/>
-        <activity android:name=".SearchResultActivity"/>
-        <activity android:name=".SearchResultPriceTooHigh"/>
+        <activity android:name=".app_main.setting.Setting_Filter_Change"/>
+        <activity android:name=".app_main.setting.Setting_Mail"/>
+        <activity android:name=".app_main.setting.search.SearchResultActivity"/>
+        <activity android:name=".app_main.setting.search.SearchResultPriceTooHigh"/>
+        <activity android:name=".app_main.setting.saved.SavedlistModify"/>
     </application>
 
 </manifest>
