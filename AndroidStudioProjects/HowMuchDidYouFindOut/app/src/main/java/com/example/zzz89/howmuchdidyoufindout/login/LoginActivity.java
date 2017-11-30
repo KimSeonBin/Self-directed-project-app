@@ -2,7 +2,6 @@ package com.example.zzz89.howmuchdidyoufindout.login;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -10,13 +9,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.zzz89.howmuchdidyoufindout.AppMainActivity;
 import com.example.zzz89.howmuchdidyoufindout.R;
 import com.example.zzz89.howmuchdidyoufindout.db.SaveSharedPreference;
 import com.example.zzz89.howmuchdidyoufindout.server_api.collection_rest_api;
-import com.example.zzz89.howmuchdidyoufindout.server_api.mallfilter;
 import com.example.zzz89.howmuchdidyoufindout.server_api.user;
-import com.example.zzz89.howmuchdidyoufindout.server_api.usersetting;
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.nhn.android.naverlogin.OAuthLogin;
 import com.nhn.android.naverlogin.OAuthLoginHandler;
@@ -26,8 +22,6 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import retrofit2.Retrofit;
 
 /**
  * Created by zzz89 on 2017-10-27.
@@ -120,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void post_all(String username) {
-        rest_api.retrofit_setting();
+        rest_api.retrofit_setting(this);
         rest_api.retrofit_post_user(new user(username));
     }
 

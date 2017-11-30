@@ -1,5 +1,6 @@
 package com.example.zzz89.howmuchdidyoufindout.app_main.setting.saved;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -24,6 +25,7 @@ import com.rengwuxian.materialedittext.MaterialEditText;
  */
 
 public class SavedlistModify extends AppCompatActivity {
+    public static Activity activity;
     private String item_name;
     private static String item_price;
     private String img_url;
@@ -41,6 +43,7 @@ public class SavedlistModify extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.saved_list_modify);
+        activity = SavedlistModify.this;
 
         getIntentString(getIntent());
         bindComponent();
@@ -64,7 +67,7 @@ public class SavedlistModify extends AppCompatActivity {
         buttondelete = (ButtonRectangle)findViewById(R.id.savedlist_delete);
         toolbar = (Toolbar)findViewById(R.id.savedlist_toolbar);
         rest_api = new collection_rest_api();
-        rest_api.retrofit_setting();
+        rest_api.retrofit_setting(this);
     }
 
     private void set_textandedit(){
@@ -100,7 +103,7 @@ public class SavedlistModify extends AppCompatActivity {
                 sqLiteDatabase.deleteITEM_INFO(item_name, parse_updated_price);
                 resultCode = 2;
                 setupresult();
-                finish();
+                //finish();
             }
         });
     }

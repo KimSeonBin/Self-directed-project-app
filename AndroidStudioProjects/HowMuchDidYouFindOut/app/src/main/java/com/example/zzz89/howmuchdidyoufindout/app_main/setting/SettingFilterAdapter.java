@@ -5,10 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.zzz89.howmuchdidyoufindout.R;
-import com.gc.materialdesign.views.Switch;
 
 import java.util.ArrayList;
 
@@ -51,15 +52,15 @@ public class SettingFilterAdapter extends BaseAdapter {
 
         textView.setText(settingFilterItem.getOnlinemall());
         swit.setChecked(settingFilterItem.getistrue());
-        swit.setOncheckListener(new Switch.OnCheckListener() {
+        swit.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheck(Switch view, boolean check) {
-                if(check){
-                    view.setChecked(true);
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    buttonView.setChecked(true);
                     settingFilterItem.setIstrue(true);
                 }
                 else{
-                    view.setChecked(false);
+                    buttonView.setChecked(false);
                     settingFilterItem.setIstrue(false);
                 }
             }

@@ -1,5 +1,6 @@
 package com.example.zzz89.howmuchdidyoufindout.app_main.setting;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import com.example.zzz89.howmuchdidyoufindout.server_api.usersetting;
  */
 
 public class Setting_Mail extends AppCompatActivity {
+    public static Activity activity;
     private ListView listView;
     private Toolbar toolbar;
     private SettingMailAdapter adapter;
@@ -29,6 +31,8 @@ public class Setting_Mail extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting_filter_layout);
+        activity = Setting_Mail.this;
+
         adapter = new SettingMailAdapter();
         listView = (ListView)findViewById(R.id.setting_filter_listview);
         listView.setAdapter(adapter);
@@ -44,7 +48,7 @@ public class Setting_Mail extends AppCompatActivity {
             adapter.addItem(sentence_setting_mail[i], setting_mail_check[i]);
         }
         rest_api = new collection_rest_api();
-        rest_api.retrofit_setting();
+        rest_api.retrofit_setting(this);
     }
 
     private void call_mail_check_value(){
@@ -74,7 +78,7 @@ public class Setting_Mail extends AppCompatActivity {
             boolean temp[] = adapter.getSwitchvalue();
             rest_api.retrofit_put_usersetting(new usersetting(SaveSharedPreference.getUserName(Setting_Mail.this), temp));
             SaveSharedPreference.setMailSettingCheck(Setting_Mail.this, temp);
-            finish();
+            //finish();
         }
         else{
             finish();

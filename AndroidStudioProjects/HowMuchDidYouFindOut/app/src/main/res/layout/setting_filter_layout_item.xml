@@ -7,16 +7,15 @@
         android:layout_height="wrap_content"
         android:id="@+id/setting_filter_text"
         android:text="aaa"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="16sp"/>
-
-    <com.gc.materialdesign.views.Switch
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="16sp"/>
+    <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/setting_filter_layout_switch"
-        android:background="#1E88E5"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="16dp"
-        >
-    </com.gc.materialdesign.views.Switch>
+        android:checked="true"
+        android:layout_alignParentEnd="true"
+        android:padding="16dp"
+        android:track="@drawable/myswitch_selector"
+        android:thumb="@drawable/myswitch_thumb_selector"/>
 </RelativeLayout>

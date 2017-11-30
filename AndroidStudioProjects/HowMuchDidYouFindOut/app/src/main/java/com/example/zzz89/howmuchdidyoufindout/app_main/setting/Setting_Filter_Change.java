@@ -1,5 +1,6 @@
 package com.example.zzz89.howmuchdidyoufindout.app_main.setting;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import com.example.zzz89.howmuchdidyoufindout.server_api.mallfilter;
  */
 
 public class Setting_Filter_Change extends AppCompatActivity {
+    public static Activity activity;
     private ListView listView;
     private Toolbar toolbar;
     private SettingFilterAdapter adapter;
@@ -33,6 +35,8 @@ public class Setting_Filter_Change extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting_filter_layout);
+        activity = Setting_Filter_Change.this;
+
         listView = (ListView)findViewById(R.id.setting_filter_listview);
         toolbar = (Toolbar)findViewById(R.id.setting_filter_toolbar);
         toolbar.setTitle("쇼핑몰 필터 변경");
@@ -50,7 +54,7 @@ public class Setting_Filter_Change extends AppCompatActivity {
         }
 
         rest_api = new collection_rest_api();
-        rest_api.retrofit_setting();
+        rest_api.retrofit_setting(this);
     }
 
     private void call_filter_value(){
@@ -79,7 +83,7 @@ public class Setting_Filter_Change extends AppCompatActivity {
         if(id == R.id.item_icon){
             rest_api.retrofit_put_online_mall_filter(new mallfilter(SaveSharedPreference.getUserName(Setting_Filter_Change.this), adapter.getSwitchValue()));
             SaveSharedPreference.setOnlineFilter(Setting_Filter_Change.this, adapter.getSwitchValue());
-            finish();
+            //finish();
         }
         else{
             finish();

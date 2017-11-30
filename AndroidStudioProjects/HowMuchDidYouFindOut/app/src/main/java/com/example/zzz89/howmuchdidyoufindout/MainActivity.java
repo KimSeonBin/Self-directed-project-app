@@ -1,6 +1,8 @@
 package com.example.zzz89.howmuchdidyoufindout;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -51,10 +53,14 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 }
+                else{
+                    first_fail();
+                }
             }
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 Log.d("select user","fail");
+                first_fail();
             }
         });
     }
@@ -71,5 +77,15 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return null;
+    }
+    private void first_fail(){
+        Log.d("dialog show", "show");
+        new AlertDialog.Builder(this).setTitle(getResources().getString(R.string.warning)).setMessage(getResources()
+                .getString(R.string.not_online)).setNegativeButton(getResources().getString(R.string.close), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finishAffinity();
+            }
+        }).show();
     }
 }

@@ -90,7 +90,7 @@ public class SearchResultPriceTooHigh extends AppCompatActivity {
 
     private void setting_collection_rest_api() {
         rest_api = new collection_rest_api();
-        rest_api.retrofit_setting();
+        rest_api.retrofit_setting(getApplicationContext());
     }
 
     @Override

@@ -17,4 +17,9 @@
     <string name="not_found3">찾지 </string>
     <string name="not_found4"> 못 했습니다</string>
     <string name="blank">공란 입니다</string>
+    <string name="warning">주의</string>
+    <string name="not_online">인터넷 환경이 불안정합니다. 인터넷 연결 상태를 확인해 주세요</string>
+    <string name="not_online_retry">인터넷 환경이 불안정합니다. 재수행 하겠습니다.</string>
+    <string name="ok">확인</string>
+    <string name="close">닫기</string>
 </resources>
