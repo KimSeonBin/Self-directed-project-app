@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.example.zzz89.howmuchdidyoufindout.app_main.setting.search.SearchResultCardItem;
+
 /**
  * Created by zzz89 on 2017-11-09.
  */
@@ -46,21 +48,20 @@ public class HowMuchSQLHelper extends SQLiteOpenHelper {
         sqLiteDatabase.update("ITEM_INFO", values, "ITEM_NAME = ?", new String[]{item_name});
     }
 
-    public String[] selectITEM_INFO(){
+    public SearchResultCardItem[] selectITEM_INFO(){
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
-        String sql_select_item = "select * from ITEM_INFO";
+        String sql_select_item = "select ITEM_IMAGE_URL, ITEM_NAME, WANTED_PRICE from ITEM_INFO";
         String sql_select_count = "select count(*) from ITEM_INFO";
         int size = 0, i = 0;
-        String result[];
+        SearchResultCardItem result[];
         Cursor cursor = sqLiteDatabase.rawQuery(sql_select_count, null);
         while(cursor.moveToNext()){
             size = cursor.getInt(0);
         }
-        result = new String[size];
-
+        result = new SearchResultCardItem[size];
         cursor = sqLiteDatabase.rawQuery(sql_select_item, null);
         while(cursor.moveToNext() && i < size){
-            result[i++] = cursor.getString(0) + " " + cursor.getInt(1) + " " + cursor.getString(2);
+            result[i++] = new SearchResultCardItem(cursor.getString(0), cursor.getString(1), String.valueOf(cursor.getInt(2)));
         }
         return result;
     }

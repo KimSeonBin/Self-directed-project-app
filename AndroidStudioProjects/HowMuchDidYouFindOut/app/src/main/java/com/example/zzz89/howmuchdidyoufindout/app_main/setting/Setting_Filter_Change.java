@@ -10,6 +10,8 @@ import android.widget.ListView;
 
 import com.example.zzz89.howmuchdidyoufindout.R;
 import com.example.zzz89.howmuchdidyoufindout.db.SaveSharedPreference;
+import com.example.zzz89.howmuchdidyoufindout.server_api.collection_rest_api;
+import com.example.zzz89.howmuchdidyoufindout.server_api.mallfilter;
 
 /**
  * Created by zzz89 on 2017-11-02.
@@ -21,6 +23,7 @@ public class Setting_Filter_Change extends AppCompatActivity {
     private SettingFilterAdapter adapter;
     private String onlineMall[] = {"옥션", "11번가", "G마켓", "쿠팡", "SSG.COM", "인터파크", "Cj몰"};
     private boolean onlineMall_check[];
+    private collection_rest_api rest_api;
 
     public Setting_Filter_Change(){
 
@@ -45,6 +48,9 @@ public class Setting_Filter_Change extends AppCompatActivity {
         for(int i = 0; i < onlineMall.length; i++){
             adapter.addItem(onlineMall[i], onlineMall_check[i]);
         }
+
+        rest_api = new collection_rest_api();
+        rest_api.retrofit_setting();
     }
 
     private void call_filter_value(){
@@ -71,6 +77,7 @@ public class Setting_Filter_Change extends AppCompatActivity {
         int id = item.getItemId();
         adapter.notifyDataSetChanged();
         if(id == R.id.item_icon){
+            rest_api.retrofit_put_online_mall_filter(new mallfilter(SaveSharedPreference.getUserName(Setting_Filter_Change.this), adapter.getSwitchValue()));
             SaveSharedPreference.setOnlineFilter(Setting_Filter_Change.this, adapter.getSwitchValue());
             finish();
         }

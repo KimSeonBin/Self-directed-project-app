@@ -8,12 +8,16 @@ import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.zzz89.howmuchdidyoufindout.R;
 import com.example.zzz89.howmuchdidyoufindout.db.HowMuchSQLHelper;
+import com.example.zzz89.howmuchdidyoufindout.db.SaveSharedPreference;
+import com.example.zzz89.howmuchdidyoufindout.server_api.collection_rest_api;
+import com.example.zzz89.howmuchdidyoufindout.server_api.item;
 import com.gc.materialdesign.views.ButtonRectangle;
 
 /**
@@ -22,11 +26,12 @@ import com.gc.materialdesign.views.ButtonRectangle;
 
 public class SearchResultPriceTooHigh extends AppCompatActivity {
     private String item_name;
-    private int item_price;
+    private int wanted_price;
     private String img_url;
     private TextView textView;
     private ButtonRectangle buttonRectangle;
     private Toolbar toolbar;
+    private collection_rest_api rest_api;
 
     private String sentence1 = "찾으시는 ";
     private String sentence2 = " 을(를)\n";
@@ -38,8 +43,8 @@ public class SearchResultPriceTooHigh extends AppCompatActivity {
         setContentView(R.layout.search_result_too_much);
         Intent intent = getIntent();
         item_name = intent.getStringExtra("item_name");
-        item_price = intent.getIntExtra("item_price", 0);
         img_url = intent.getStringExtra("img_url");
+        wanted_price = intent.getIntExtra("wanted_price", 0);
 
         textView = (TextView)findViewById(R.id.search_result_too_much_text);
         buttonRectangle = (ButtonRectangle)findViewById(R.id.search_result_too_much_button);
@@ -48,6 +53,7 @@ public class SearchResultPriceTooHigh extends AppCompatActivity {
         setting_textview();
         setting_button();
         setting_toolbar();
+        setting_collection_rest_api();
     }
 
     private void setting_textview(){
@@ -82,6 +88,11 @@ public class SearchResultPriceTooHigh extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
     }
 
+    private void setting_collection_rest_api() {
+        rest_api = new collection_rest_api();
+        rest_api.retrofit_setting();
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         finish();
@@ -89,7 +100,13 @@ public class SearchResultPriceTooHigh extends AppCompatActivity {
     }
 
     private void storeinSQL(){
+        Log.d("item name", item_name);
+        Log.d("wanted_price", String.valueOf(wanted_price));
+        Log.d("url", img_url);
+
         HowMuchSQLHelper sqLiteDatabase = new HowMuchSQLHelper(getApplicationContext(), HowMuchSQLHelper.DB_name, null, HowMuchSQLHelper.versionNumber);
-        sqLiteDatabase.addITEM_INFO(item_name, item_price, img_url);
+        String username = SaveSharedPreference.getUserName(SearchResultPriceTooHigh.this);
+        rest_api.retrofit_post_item(new item(username, item_name, username, 1, wanted_price));
+        sqLiteDatabase.addITEM_INFO(item_name, wanted_price, img_url);
     }
 }

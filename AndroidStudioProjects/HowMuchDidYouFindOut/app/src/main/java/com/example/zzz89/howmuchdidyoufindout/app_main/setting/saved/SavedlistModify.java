@@ -12,6 +12,9 @@ import android.widget.TextView;
 
 import com.example.zzz89.howmuchdidyoufindout.R;
 import com.example.zzz89.howmuchdidyoufindout.db.HowMuchSQLHelper;
+import com.example.zzz89.howmuchdidyoufindout.db.SaveSharedPreference;
+import com.example.zzz89.howmuchdidyoufindout.server_api.collection_rest_api;
+import com.example.zzz89.howmuchdidyoufindout.server_api.item;
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.gc.materialdesign.widgets.Dialog;
 import com.rengwuxian.materialedittext.MaterialEditText;
@@ -31,6 +34,8 @@ public class SavedlistModify extends AppCompatActivity {
     private ButtonRectangle buttondelete;
     private Toolbar toolbar;
     private static int resultCode = 0;
+
+    private collection_rest_api rest_api;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,12 +63,15 @@ public class SavedlistModify extends AppCompatActivity {
         buttonmodify = (ButtonRectangle)findViewById(R.id.savedlist_change);
         buttondelete = (ButtonRectangle)findViewById(R.id.savedlist_delete);
         toolbar = (Toolbar)findViewById(R.id.savedlist_toolbar);
+        rest_api = new collection_rest_api();
+        rest_api.retrofit_setting();
     }
 
     private void set_textandedit(){
         textView.setText(item_name);
         editText.setText(item_price);
     }
+
     private void set_button_clicklistener() {
         final HowMuchSQLHelper sqLiteDatabase = new HowMuchSQLHelper(getApplicationContext(), HowMuchSQLHelper.DB_name, null, HowMuchSQLHelper.versionNumber);
         buttonmodify.setOnClickListener(new View.OnClickListener() {
@@ -71,11 +79,12 @@ public class SavedlistModify extends AppCompatActivity {
             public void onClick(View v) {
                 item_price = editText.getText().toString();
                 if(item_price.equals("")){
-                    Dialog dialog = new Dialog(getApplicationContext(), "주의", "가격을 제대로 입력해주세요");
-                    dialog.show();
+                    editText.setError(getResources().getString(R.string.blank));
                     return;
                 }
                 int parse_updated_price = Integer.parseInt(item_price);
+                String username = SaveSharedPreference.getUserName(SavedlistModify.this);
+                rest_api.retrofit_put_item(new item(username, item_name, username, 1, parse_updated_price));
                 sqLiteDatabase.updateITEM_INFO(item_name, parse_updated_price);
                 resultCode = 1;
                 setupresult();
@@ -86,6 +95,8 @@ public class SavedlistModify extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int parse_updated_price = Integer.parseInt(editText.getText().toString());
+                String username = SaveSharedPreference.getUserName(SavedlistModify.this);
+                rest_api.retrofit_delete_item(new item(username, item_name, username, 1, parse_updated_price));
                 sqLiteDatabase.deleteITEM_INFO(item_name, parse_updated_price);
                 resultCode = 2;
                 setupresult();

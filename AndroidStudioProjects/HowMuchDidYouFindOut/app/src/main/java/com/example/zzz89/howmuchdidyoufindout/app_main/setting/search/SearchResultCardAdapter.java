@@ -24,6 +24,7 @@ public class SearchResultCardAdapter extends RecyclerView.Adapter<SearchResultCa
     private List<SearchResultCardItem> items;
     private int item_layout;
     private int price;
+
     public SearchResultCardAdapter(Context context, List<SearchResultCardItem> items, int item_layout, int price) {
         super();
         this.context = context;
@@ -48,11 +49,10 @@ public class SearchResultCardAdapter extends RecyclerView.Adapter<SearchResultCa
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), SearchResultPriceTooHigh.class);
-                int item_price = Integer.parseInt(item.getPriceInfo());
 
                 intent.putExtra("item_name", item.getItemName());
-                intent.putExtra("item_price", item_price);
                 intent.putExtra("img_url", item.getImageReso());
+                intent.putExtra("wanted_price", price);
                 v.getContext().startActivity(intent);
             }
         });
@@ -63,7 +63,7 @@ public class SearchResultCardAdapter extends RecyclerView.Adapter<SearchResultCa
         return this.items.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
         TextView textView;
         TextView textView2;
@@ -71,10 +71,10 @@ public class SearchResultCardAdapter extends RecyclerView.Adapter<SearchResultCa
 
         public ViewHolder(View itemView) {
             super(itemView);
-            this.imageView = (ImageView)itemView.findViewById(R.id.search_result_card_image);
-            this.textView = (TextView)itemView.findViewById(R.id.search_result_card_text);
-            this.textView2 = (TextView)itemView.findViewById(R.id.search_result_card_text_price);
-            this.cardView = (CardView)itemView.findViewById(R.id.search_result_card);
+            this.imageView = (ImageView) itemView.findViewById(R.id.search_result_card_image);
+            this.textView = (TextView) itemView.findViewById(R.id.search_result_card_text);
+            this.textView2 = (TextView) itemView.findViewById(R.id.search_result_card_text_price);
+            this.cardView = (CardView) itemView.findViewById(R.id.search_result_card);
         }
     }
 }

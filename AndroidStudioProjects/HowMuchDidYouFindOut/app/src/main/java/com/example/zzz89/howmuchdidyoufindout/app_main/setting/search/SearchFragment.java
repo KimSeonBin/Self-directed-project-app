@@ -48,17 +48,12 @@ public class SearchFragment extends Fragment {
             public void onClick(View v) {
                 item_name = editTextitem.getText().toString();
                 price_count = editTextprice.getText().toString();
-                if(item_name.equals("") || price_count.equals("")){
-                    SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
-                    stringBuilder.append("주의");
-                    stringBuilder.setSpan(new ForegroundColorSpan(Color.RED), 0, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-                    Dialog dialog = new Dialog(getContext(), "주의", "상품 또는 가격이 공란입니다.");
-
-                    stringBuilder.clear();
-
-                    //dialog.getMessageTextView().append("상품 또는 가격이 공란입니다");
-                    dialog.show();
+                if(item_name.equals("")){
+                    editTextitem.setError(getResources().getString(R.string.blank));
+                    return;
+                }
+                if(price_count.equals("")){
+                    editTextprice.setError(getResources().getString(R.string.blank));
                     return;
                 }
                 Intent intent = new Intent(getActivity(), SearchResultActivity.class);

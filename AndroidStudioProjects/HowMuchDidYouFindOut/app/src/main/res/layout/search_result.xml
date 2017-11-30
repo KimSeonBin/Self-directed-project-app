@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#76ff03"
+        android:id="@+id/search_result_toolbar"
+        android:layout_alignParentTop="true"
+        android:elevation="4dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_result_toolbar"
+        android:gravity="center"
+        android:id="@+id/search_result_textview"
+        android:textSize="20sp"
+        android:paddingTop="30dp"/>
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -12,6 +26,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
+        android:layout_below="@id/search_result_toolbar"
         >
     </android.support.v7.widget.RecyclerView>
-</LinearLayout>
+</RelativeLayout>

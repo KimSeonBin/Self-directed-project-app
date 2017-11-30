@@ -59,14 +59,9 @@ public class SavedlistFragment extends Fragment {
 
     private void loadData(){
         HowMuchSQLHelper sqlHelper = new HowMuchSQLHelper(getActivity().getApplicationContext(), HowMuchSQLHelper.DB_name, null, HowMuchSQLHelper.versionNumber);
-        String select[] = sqlHelper.selectITEM_INFO();
+        SearchResultCardItem select[] = sqlHelper.selectITEM_INFO();
         for(int i = 0; i < select.length; i++){
-            String split[] = select[i].split(" ");
-            adapter.addItem(new SearchResultCardItem(split[2], split[0], split[1]));
-            //split[2] = img_url, split[0] = item_name, split[1] = item_price
-            Log.d("name", split[0]);
-            Log.d("price", split[1]);
-            Log.d("url", split[2]);
+            adapter.addItem(select[i]);
         }
         adapter.notifyDataSetChanged();
     }
@@ -87,7 +82,6 @@ public class SavedlistFragment extends Fragment {
         if(resultCode == 1){   //update item info
             adapter.updateItem(item_pos, updated_item_price);
             adapter.notifyDataSetChanged();
-            Log.d("aaaa","exec");
         }
         else if(resultCode == 2){  //delete item info
             adapter.deleteItem(item_pos);

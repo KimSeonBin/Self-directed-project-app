@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/e-mail_address"
         android:hint="@string/email_sentence"
+        android:inputType="textWebEmailAddress"
         android:layout_margin="16dp"
         />
     <com.rengwuxian.materialedittext.MaterialEditText
