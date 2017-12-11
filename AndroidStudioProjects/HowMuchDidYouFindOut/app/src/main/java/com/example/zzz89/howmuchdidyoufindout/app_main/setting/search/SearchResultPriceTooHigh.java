@@ -3,6 +3,7 @@ package com.example.zzz89.howmuchdidyoufindout.app_main.setting.search;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.zzz89.howmuchdidyoufindout.R;
 import com.example.zzz89.howmuchdidyoufindout.db.HowMuchSQLHelper;
@@ -35,8 +37,8 @@ public class SearchResultPriceTooHigh extends AppCompatActivity {
 
     private String sentence1 = "찾으시는 ";
     private String sentence2 = " 을(를)\n";
-    private String sentence3 = " 메일로";
-    private String sentence4 = " 알려드리겠습니다.";
+    private String sentence3;
+    private String sentence4 = "로\n알려드리겠습니다.";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +67,7 @@ public class SearchResultPriceTooHigh extends AppCompatActivity {
         textView.append(sentence2);
 
         stringBuilder.clear();
+        sentence3 = SaveSharedPreference.getUserName(getApplicationContext());
         stringBuilder.append(sentence3);
         stringBuilder.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.colorPrimary)), 0, sentence3.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         textView.append(stringBuilder);
@@ -75,7 +78,11 @@ public class SearchResultPriceTooHigh extends AppCompatActivity {
         buttonRectangle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String sentence = "서버에 " + item_name + "저장을 완료 했습니다.";
                 storeinSQL();
+                Toast toast = Toast.makeText(getApplicationContext(), sentence, Toast.LENGTH_SHORT);
+                toast.show();
+
                 finish();
             }
         });

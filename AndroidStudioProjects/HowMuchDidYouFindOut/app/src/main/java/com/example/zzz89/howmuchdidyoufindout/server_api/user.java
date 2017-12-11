@@ -11,9 +11,26 @@ public class user {
     @SerializedName("user")
     @Expose
     private String username;
+    @SerializedName("fb_token")
+    @Expose
+    private String fbtoken;
 
     public user(String username) {
         this.username = username;
+        fbtoken = "a";
+    }
+
+    public user(String username, String fbtoken) {
+        this.username = username;
+        this.fbtoken = fbtoken;
+    }
+
+    public String getFbtoken() {
+        return fbtoken;
+    }
+
+    public void setFbtoken(String fbtoken) {
+        this.fbtoken = fbtoken;
     }
 
     public String getUsername() {

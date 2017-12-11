@@ -1,5 +1,6 @@
 package com.example.zzz89.howmuchdidyoufindout;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -9,7 +10,9 @@ import android.util.Log;
 
 import com.example.zzz89.howmuchdidyoufindout.db.SaveSharedPreference;
 import com.example.zzz89.howmuchdidyoufindout.login.LoginActivity;
+import com.example.zzz89.howmuchdidyoufindout.noti.MyFirebaseInstanceIDService;
 import com.example.zzz89.howmuchdidyoufindout.server_api.ServerRetroInterface;
+import com.google.firebase.iid.FirebaseInstanceIdService;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,9 +29,11 @@ import retrofit2.Retrofit;
 public class MainActivity extends AppCompatActivity {
     private ServerRetroInterface retroInterface;
     private Retrofit retrofit;
+    public static Activity activity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activity = MainActivity.this;
 
         setContentView(R.layout.activity_main);
         final Intent intent;
@@ -50,6 +55,14 @@ public class MainActivity extends AppCompatActivity {
                         //already Login
                         Log.d("name2", username);
                         Intent intent = new Intent(MainActivity.this, AppMainActivity.class);
+                        Intent getmainintent = getIntent();
+                        String noti_intent = getmainintent.getStringExtra("noti");
+                        if(noti_intent == null){
+                            intent.putExtra("noti", "0");
+                        }
+                        else if(noti_intent.equals("2")){
+                            intent.putExtra("noti", "2");
+                        }
                         startActivity(intent);
                     }
                 }
@@ -88,4 +101,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }).show();
     }
+
+
 }

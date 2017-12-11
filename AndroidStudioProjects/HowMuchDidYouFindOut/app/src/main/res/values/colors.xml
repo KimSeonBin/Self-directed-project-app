@@ -3,4 +3,13 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="appBackground">#76ff03</color>
+    <color name="appPrimary2">#AB47BC</color>
+    <color name="white">#FFFFFF</color>
+    <color name="not_click">#E3F2FD</color>
+    <color name="transparent">#00000000</color>
+    <integer-array name="circular">
+        <item>@color/appPrimary2</item>
+        <item>@color/not_click</item>
+    </integer-array>
 </resources>

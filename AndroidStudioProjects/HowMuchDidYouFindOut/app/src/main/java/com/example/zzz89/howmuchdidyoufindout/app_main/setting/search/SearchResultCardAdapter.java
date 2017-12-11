@@ -24,7 +24,8 @@ public class SearchResultCardAdapter extends RecyclerView.Adapter<SearchResultCa
     private List<SearchResultCardItem> items;
     private int item_layout;
     private int price;
-
+    private String price_sentence = "최저가: ";
+    private String price_won = "원";
     public SearchResultCardAdapter(Context context, List<SearchResultCardItem> items, int item_layout, int price) {
         super();
         this.context = context;
@@ -43,7 +44,7 @@ public class SearchResultCardAdapter extends RecyclerView.Adapter<SearchResultCa
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final SearchResultCardItem item = items.get(position);
         holder.textView.setText(item.getItemName());
-        holder.textView2.setText(item.getPriceInfo());
+        holder.textView2.setText(price_sentence + item.getPriceInfo() + price_won);
         Picasso.with(context).load(item.getImageReso()).fit().centerCrop().into(holder.imageView);
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override

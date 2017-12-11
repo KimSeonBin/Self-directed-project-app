@@ -1,22 +1,26 @@
 package com.example.zzz89.howmuchdidyoufindout.server_api;
 
 import android.app.Application;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
-import android.view.KeyEvent;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ProgressBar;
 
 import com.example.zzz89.howmuchdidyoufindout.AppMainActivity;
 import com.example.zzz89.howmuchdidyoufindout.R;
 import com.example.zzz89.howmuchdidyoufindout.app_main.setting.Setting_Filter_Change;
 import com.example.zzz89.howmuchdidyoufindout.app_main.setting.Setting_Mail;
 import com.example.zzz89.howmuchdidyoufindout.app_main.setting.saved.SavedlistModify;
+import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
+import com.google.firebase.iid.FirebaseInstanceId;
 
-import java.io.IOException;
-import java.util.regex.Pattern;
-
+import fr.castorflex.android.circularprogressbar.CircularProgressBar;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -33,6 +37,8 @@ public class collection_rest_api {
     private Application application;
     private Context context;
     private Intent intent;
+    private ProgressDialog dialog;
+    private Window window;
 
     public void retrofit_setting(Context context) {
         retrofit = new Retrofit.Builder().baseUrl(ServerRetroInterface.API_URL).addConverterFactory(GsonConverterFactory.create()).build();
@@ -43,7 +49,6 @@ public class collection_rest_api {
     public void retrofit_post_user(final user userr){
         Call<user> call = retroInterface.postUserLogin(userr);
         Log.d("start post user", "sss");
-
         call.enqueue(new Callback<user>() {
             @Override
             public void onResponse(Call<user> call, Response<user> response) {
@@ -52,6 +57,8 @@ public class collection_rest_api {
                     retrofit_post_online_mall_filter(new mallfilter(userr.getUsername(), true, true, true, true, true, true, true));
                 }
                 else{
+                    Log.d("username fail", String.valueOf(response.code()));
+                    Log.d("username fail content", response.message());
                     retry(call.clone(), this);
                 }
             }
@@ -71,6 +78,8 @@ public class collection_rest_api {
                 if(response.isSuccessful()){
                     Log.d("setting create", String.valueOf(response.code()));
                     //최종 성공 후 intent start
+                    progressCancle();
+
                     start_intent();
                 }
                 else{
@@ -94,6 +103,7 @@ public class collection_rest_api {
                 if(response.isSuccessful()) {
                     Log.d("filter create", String.valueOf(response.code()));
                     retrofit_post_user_setting(new usersetting(filter.getUser_id(), true, true));
+                    FirebaseInstanceId.getInstance().getToken();
                 }
                 else{
                     retry(call.clone(), this);
@@ -236,8 +246,19 @@ public class collection_rest_api {
         this.context = context;
         this.intent = new Intent(context, AppMainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("noti", "0");
     }
     public void start_intent(){
         context.startActivity(intent);
+    }
+
+    public void getProgressbar(ProgressDialog dialog, Window window){
+        this.dialog = dialog;
+        this.window = window;
+    }
+
+    public void progressCancle(){
+        dialog.dismiss();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
     }
 }

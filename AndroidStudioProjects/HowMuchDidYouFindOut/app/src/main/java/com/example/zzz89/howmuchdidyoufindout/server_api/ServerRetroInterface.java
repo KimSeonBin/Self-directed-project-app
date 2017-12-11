@@ -24,6 +24,9 @@ public interface ServerRetroInterface {
     @Headers("Content-Type: application/json")
     @POST("user/?format=json")
     Call<user> postUserLogin(@Body user userr);
+    @Headers("Content-Type: application/json")
+    @PUT("user/?format=json")
+    Call<user> putUserLogin(@Query("user_id") String user_id, @Body user userr);
 
     @GET("mallfilter/?format=json")
     Call<ResponseBody> getMallFilter(@Query("user_id") String user_id);
@@ -53,4 +56,7 @@ public interface ServerRetroInterface {
     Call<item> putItem(@Query("user_id") String user_id, @Query("item_name") String item_name, @Body item items);
     @DELETE("item/?format=json")
     Call<item> deleteItem(@Query("user_id") String user_id, @Query("item_name") String item_name);
+
+    @GET("searchitem/?format=json")
+    Call<ResponseBody> getSearchItem(@Query("user_id") String user_id, @Query("item_name") String item_name);
 }

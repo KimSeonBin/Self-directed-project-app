@@ -59,4 +59,24 @@ public class SaveSharedPreference {
         }
         return temp;
     }
+
+    public static boolean getClickItem(Context ctx, String keyword){
+        return getSharedPreferences(ctx).getBoolean(keyword, true);
+    }
+
+    public static void setClickItem(Context ctx, String keyword, boolean click){
+        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
+        editor.putBoolean(keyword, click);
+        editor.commit();
+    }
+
+    public static void setToken(Context ctx, String token){
+        SharedPreferences.Editor editor = getSharedPreferences(ctx).edit();
+        editor.putString("FCM token", token);
+        editor.commit();
+    }
+
+    public static String getToken(Context ctx){
+        return getSharedPreferences(ctx).getString("FCM token", "a");
+    }
 }

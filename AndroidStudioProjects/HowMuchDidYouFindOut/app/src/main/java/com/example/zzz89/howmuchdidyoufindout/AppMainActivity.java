@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
 import com.example.zzz89.howmuchdidyoufindout.app_main.setting.SettingFragment;
 import com.example.zzz89.howmuchdidyoufindout.app_main.setting.alarm.AlarmFragment;
@@ -24,23 +25,33 @@ import com.roughike.bottombar.OnTabSelectListener;
 
 public class AppMainActivity extends AppCompatActivity {
     BottomBar bottomBar;
-    Toolbar toolbar;
+    private Toolbar toolbar;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.app_main);
         LoginActivity loginActivity = (LoginActivity) LoginActivity.activity;
-
+        MainActivity mainActivity = (MainActivity) MainActivity.activity;
         if(loginActivity != null) {
             loginActivity.finish();
         }
+        if(mainActivity != null){
+            mainActivity.finish();
+        }
+        Intent intent = getIntent();
+        String getnoti = intent.getStringExtra("noti");
 
         toolbar = (Toolbar)findViewById(R.id.app_main_toolbar);
         toolbar.setTitle("검색");
         setSupportActionBar(toolbar);
-
+        Log.d("noti", String.valueOf(getnoti));
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_layout, SearchFragment.newInstance());
+        if(getnoti.equals("2")) {
+            fragmentTransaction.replace(R.id.fragment_layout, AlarmFragment.newInstance());
+        }
+        else{
+            fragmentTransaction.replace(R.id.fragment_layout, SearchFragment.newInstance());
+        }
         fragmentTransaction.commit();
 
         bottomBar = (BottomBar)findViewById(R.id.main_bottomBar);

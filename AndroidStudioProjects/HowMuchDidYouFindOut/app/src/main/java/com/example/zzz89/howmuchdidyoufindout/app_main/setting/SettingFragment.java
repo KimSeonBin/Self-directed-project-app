@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.zzz89.howmuchdidyoufindout.R;
+import com.example.zzz89.howmuchdidyoufindout.db.HowMuchSQLHelper;
 import com.example.zzz89.howmuchdidyoufindout.login.LoginActivity;
 
 /**
@@ -55,6 +56,15 @@ public class SettingFragment extends Fragment {
                     getActivity().startActivity(intent);
                 }
                 else if(item.getPrimary_sentence().equals("메일 변경")){
+                    HowMuchSQLHelper sqlHelper = new HowMuchSQLHelper(getActivity().getApplicationContext(), HowMuchSQLHelper.DB_name, null, HowMuchSQLHelper.versionNumber);
+
+                    String keywords[] = sqlHelper.select_ori_keyword_from_FOUND_ITEM();
+                    if (keywords != null) {
+                        for (int i = 0; i < keywords.length; i++) {
+                            sqlHelper.delete_All_Item(keywords[i]);
+                            sqlHelper.deleteSearch_Info(keywords[i]);
+                        }
+                    }
                     intent = new Intent(getActivity(), LoginActivity.class);
                     getActivity().startActivityForResult(intent, 1);
                 }
